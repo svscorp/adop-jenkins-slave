@@ -20,6 +20,7 @@ ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 
 # Pre-requisites
 RUN yum -y install epel-release
+RUN yum -y install dos2unix
 RUN yum install -y which \
     git \
     wget \
