@@ -31,6 +31,7 @@ RUN yum install -y which \
     python-pip \
     libxslt \
     expect \
+    dos2unix \
     telnet \
     nc \
     net-tools \
