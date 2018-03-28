@@ -36,6 +36,7 @@ RUN yum install -y which \
     nc \
     net-tools \
     strace \
+    glibc.i686 \
     file && \
     yum clean all 
 
