@@ -40,7 +40,7 @@ RUN yum install -y which \
     file && \
     yum clean all 
 
-RUN pip install awscli==1.10.19
+RUN pip install awscli==1.10.19 \
     python-docx
 
 # Docker versions Env Variables
