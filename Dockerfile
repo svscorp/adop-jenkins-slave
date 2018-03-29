@@ -32,7 +32,8 @@ RUN yum install -y which \
     libxslt && \
     yum clean all 
 
-RUN pip install awscli==1.10.19
+RUN pip install awscli==1.10.19 \
+    python-docx
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
