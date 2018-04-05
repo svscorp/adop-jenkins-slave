@@ -13,7 +13,7 @@ ENV SWARM_PASSWORD=jenkins
 
 # Slave Env Variables
 ENV SLAVE_NAME="Swarm_Slave"
-ENV SLAVE_LABELS="docker aws ldap"
+iENV SLAVE_LABELS="docker aws ldap"
 ENV SLAVE_MODE="exclusive"
 ENV SLAVE_EXECUTORS=1
 ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
@@ -42,6 +42,7 @@ RUN yum install -y which \
 
 RUN pip install awscli==1.10.19 \
     python-docx
+    mammoth
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
