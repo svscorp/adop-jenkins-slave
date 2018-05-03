@@ -3,7 +3,7 @@ MAINTAINER "Nick Griffin" <nicholas.griffin@accenture.com>
 
 # Java Env Variables
 ENV JAVA_VERSION=1.8.0_171
-ENV JAVA_TARBALL=jre-8u171-linux-x64.tar.gz
+ENV JAVA_TARBALL=jdk-8u171-linux-x64.tar.gz
 ENV JAVA_HOME=/opt/java/jdk${JAVA_VERSION}
 
 # Swarm Env Variables (defaults)
