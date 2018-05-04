@@ -19,7 +19,7 @@ ENV SLAVE_EXECUTORS=1
 ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 
 # Pre-requisites
-RUN yum update && yum -y install epel-release \
+RUN yum -y update && yum -y install epel-release \
     which \
     git \
     wget \
