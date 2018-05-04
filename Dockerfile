@@ -2,8 +2,8 @@ FROM centos:centos7.2.1511
 MAINTAINER "Nick Griffin" <nicholas.griffin@accenture.com>
 
 # Java Env Variables
-ENV JAVA_VERSION=1.8.0_161
-ENV JAVA_TARBALL=server-jre-8u161-linux-x64.tar.gz
+ENV JAVA_VERSION=1.8.0_171
+ENV JAVA_TARBALL=jdk-8u171-linux-x64.tar.gz
 ENV JAVA_HOME=/opt/java/jdk${JAVA_VERSION}
 
 # Swarm Env Variables (defaults)
@@ -19,8 +19,8 @@ ENV SLAVE_EXECUTORS=1
 ENV SLAVE_DESCRIPTION="Core Jenkins Slave"
 
 # Pre-requisites
-RUN yum -y install epel-release
-RUN yum install -y which \
+RUN yum -y install epel-release && \
+    yum -y install which \
     git \
     wget \
     tar \
@@ -38,28 +38,27 @@ RUN yum install -y which \
     strace \
     glibc.i686 \
     file && \
-    yum clean all 
-
-RUN pip install awscli==1.10.19 \
+    yum clean all && \
+    pip install awscli==1.10.19 \
     python-docx \
-    mammoth
+    mammoth \
+    pymongo
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
 ENV DOCKER_COMPOSE_VERSION=1.6.0
 ENV DOCKER_MACHINE_VERSION=v0.6.0
 
-RUN curl -fsSL https://get.docker.com/ | sed "s/docker-engine/docker-engine-${DOCKER_ENGINE_VERSION}/" | sh
-
-RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
-RUN curl -L https://github.com/docker/machine/releases/download/${DOCKER_MACHINE_VERSION}/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+RUN curl -fsSL https://get.docker.com/ | sed "s/docker-engine/docker-engine-${DOCKER_ENGINE_VERSION}/" | sh && \
+    curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
+    curl -L https://github.com/docker/machine/releases/download/${DOCKER_MACHINE_VERSION}/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
     chmod +x /usr/local/bin/docker-machine
 
 # Install Java
 RUN wget -q --no-check-certificate --directory-prefix=/tmp \
          --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-            http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/${JAVA_TARBALL} && \
+            http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/${JAVA_TARBALL} && \
           mkdir -p /opt/java && \
               tar -xzf /tmp/${JAVA_TARBALL} -C /opt/java/ && \
             alternatives --install /usr/bin/java java /opt/java/jdk${JAVA_VERSION}/bin/java 100 && \
