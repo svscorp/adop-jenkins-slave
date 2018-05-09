@@ -42,7 +42,9 @@ RUN yum -y install epel-release && \
     pip install awscli==1.10.19 \
     python-docx \
     mammoth \
-    pymongo
+    pymongo \
+    requests==2.13.0 \
+    jsondiff
 
 # Docker versions Env Variables
 ENV DOCKER_ENGINE_VERSION=1.10.3-1.el7.centos
